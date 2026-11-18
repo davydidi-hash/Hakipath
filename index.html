@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HakiPath – Justice guide for Uganda</title>
+<style>
+:root{--bg:#fff;--surface:#fff;--ink:#111;--muted:#5c5c5c;--line:#d9d9d9;--brand:#c8102e;--brand-ink:#fff;--gold:#111;--red:#c8102e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0b0b;--surface:#151515;--ink:#f5f5f5;--muted:#a8a8a8;--line:#2e2e2e;--brand:#e0243f;--brand-ink:#fff;--gold:#fff;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0b0b0b;--surface:#151515;--ink:#f5f5f5;--muted:#a8a8a8;--line:#2e2e2e;--brand:#e0243f;--brand-ink:#fff;--gold:#fff;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+h1,h2,h3{line-height:1.25;margin:0}
+.sos{background:#111;color:#fff;font-size:14px;padding:8px 14px;text-align:center}
+.sos a{color:#fff;font-weight:700}
+header{padding:22px 16px 10px;max-width:720px;margin:0 auto}
+header h1{font-size:30px;letter-spacing:-.5px}
+header p{margin:6px 0 0;color:var(--muted)}
+.stripe{height:4px;background:var(--red)}
+nav{display:flex;gap:6px;max-width:720px;margin:10px auto 0;padding:0 16px;overflow-x:auto}
+nav button{flex:1;min-width:max-content;padding:10px 12px;border:0;border-bottom:3px solid transparent;background:none;color:var(--muted);border-radius:0;font:inherit;font-weight:600;cursor:pointer}
+nav button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--brand)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+main{max-width:720px;margin:0 auto;padding:16px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:420px){.grid{grid-template-columns:1fr}}
+.tile{text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:14px;font:inherit;color:var(--ink);cursor:pointer;display:block;width:100%}
+.tile b{display:block;font-size:16px;margin-bottom:2px}
+.tile span{color:var(--muted);font-size:14px}
+.tile:hover{border-color:var(--brand)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:16px;margin:12px 0}
+.card h3{font-size:17px;margin-bottom:8px}
+.urgent{border-left:5px solid var(--red)}
+ol,ul{margin:0;padding-left:20px}
+li{margin:6px 0}
+.back{background:none;border:0;color:var(--brand);font:inherit;font-weight:700;cursor:pointer;padding:6px 0}
+label{display:block;font-weight:600;margin:10px 0 4px}
+input,select,textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
+.btn{background:var(--brand);color:var(--brand-ink);border:0;border-radius:8px;padding:12px 18px;font:inherit;font-weight:700;cursor:pointer;margin-top:12px}
+.btn.ghost{background:none;color:var(--red);border:1px solid var(--line);padding:6px 10px;margin:0;font-size:14px}
+.case{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.due{font-weight:700;color:var(--brand)}
+.due.soon{color:var(--red)}
+.muted{color:var(--muted);font-size:14px}
+footer{max-width:720px;margin:0 auto;padding:10px 16px 30px;color:var(--muted);font-size:13px}
+[hidden]{display:none!important}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.chip{border:1px solid var(--brand);color:var(--brand);background:none;border-radius:999px;padding:5px 12px;font:inherit;font-size:14px;cursor:pointer}.chip:hover{background:var(--brand);color:var(--brand-ink)}details.law{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:12px 14px;margin:8px 0}details.law summary{cursor:pointer;font-weight:700}details.law p{margin:8px 0 0}.ref{color:var(--muted);font-weight:400;font-size:14px}
+</style>
+</head>
+<body>
+<div class="sos">Danger now? Call Police <a href="tel:999">999</a> or <a href="tel:112">112</a> · Child in danger: Sauti <a href="tel:116">116</a></div>
+<div class="stripe"></div>
+<header>
+<h1>HakiPath</h1>
+<p>Tell us what happened. We’ll point you to the right office and the next step.</p>
+</header>
+<nav role="tablist" aria-label="Sections">
+<button role="tab" data-tab="help" aria-selected="true">Get help</button>
+<button role="tab" data-tab="rights" aria-selected="false">Know your rights</button>
+<button role="tab" data-tab="cases" aria-selected="false">My case diary</button>
+<button role="tab" data-tab="law" aria-selected="false">Law library</button>
+</nav>
+<main>
+<section id="help"><div id="tiles" class="grid"></div><div id="guide" hidden></div></section>
+<section id="rights" hidden></section>
+<section id="cases" hidden>
+<div class="card">
+<h3>Add a case or court date</h3>
+<label for="ct">What is it about?</label><input id="ct" placeholder="e.g. Land case, Mengo Court">
+<label for="cd">Next court or office date</label><input id="cd" type="date">
+<label for="cn">Notes (documents, who you met, what was said)</label><textarea id="cn" rows="3"></textarea>
+<button class="btn" id="save">Save case</button>
+<p class="muted">Saved only on this phone. Nothing is sent anywhere.</p>
+</div>
+<div id="caselist"></div>
+</section>
+<section id="law" hidden>
+<div class="card"><h3>Search Uganda’s laws</h3>
+<label for="lq">Describe your case in your own words</label><input id="lq" placeholder="e.g. unpaid wages, land eviction, bail" autocomplete="off">
+<label for="la">Narrow by law</label><select id="la"><option value="">All laws</option></select>
+<p class="muted" id="lc"></p><div class="chips" id="lr"></div></div>
+<div id="ll"></div>
+<p class="muted">This is a starter library of key provisions in plain language. Section numbers can change between editions: confirm the full, current text on <a href="https://ulii.org" target="_blank" rel="noopener">ulii.org</a> (Uganda Legal Information Institute).</p>
+</section>
+</main>
+<footer>HakiPath gives general guidance, not legal advice. Confirm office contacts and fees before you travel. Built for Hack4Justice 2026.</footer>
+<script>
+var P=[
+{id:"arrest",t:"Arrested or detained",s:"You or a family member",urgent:"Police must bring a suspect to court within 48 hours of arrest.",steps:["Stay calm. Say your full name and ask the reason for arrest. You may stay silent until you have spoken to a lawyer.","Ask the police to record your statement only when a lawyer or a relative you trust is present.","Family: note the officer’s name, the station and the time of arrest. Go to the station with a copy of the person’s ID.","Ask for police bond (bail). Police bond is free. Never pay anyone to “release” a suspect.","If still held after 48 hours, contact a legal aid provider or the nearest Magistrate’s court and say the 48 hours have passed."],who:["Uganda Police Force station (Officer in Charge)","Justice Centres Uganda or a legal aid clinic of the Uganda Law Society","Magistrate’s court in your district","Uganda Human Rights Commission (if beaten or tortured)"],carry:["National ID or any ID","Contact of a relative","Photos of any injuries"]},
+{id:"land",t:"Land dispute",s:"Boundary, eviction, double selling",urgent:"If people are demolishing or evicting now, report to the nearest police station and get a reference number.",steps:["Gather proof: sale agreement, land title or customary certificate, receipts, photos, names of witnesses.","Visit the land with your LC1 chairperson and neighbours so the boundary is witnessed and written down.","Try mediation first through the LC1 and the parish or sub-county land committee.","Search the title at the Ministry of Lands zonal office to confirm who is registered.","If mediation fails, file at the Magistrate’s court or High Court with a lawyer. Ask a legal aid provider for help if you cannot pay."],who:["LC1 chairperson and local mediation","Ministry of Lands zonal office (title search)","Legal aid clinic","Magistrate’s court or High Court land division"],carry:["Title or agreement","Receipts and photos","Witness names and phone numbers"]},
+{id:"gbv",t:"Domestic violence or GBV",s:"Beating, threats, forced sex, abuse",urgent:"If you are in danger now, go to a safe place and call 999 or 112.",steps:["Get to safety first. A neighbour, relative, church or health centre can help.","Get medical care. Ask for the police medical form (PF3) so the injuries are documented.","Report at the police Child and Family Protection Unit. The Domestic Violence Act allows a protection order.","Keep messages, photos and names of witnesses. Do not delete anything.","Ask a legal aid or women’s rights organisation to support you in court."],who:["Police Child and Family Protection Unit","Health centre or hospital (PF3 form)","Probation and Social Welfare Officer at the district","Women’s legal aid groups such as FIDA Uganda"],carry:["ID if you have it","Phone with messages and photos","PF3 form"]},
+{id:"work",t:"Work problem",s:"Unpaid wages, unfair dismissal",urgent:"",steps:["Write down your employer’s name, job, pay agreed, start date and what is owed.","Keep any contract, appointment letter, payslips, mobile money records and WhatsApp messages.","Write a short letter asking for payment or reasons for dismissal. Keep a copy signed as received.","Report to the District Labour Officer. They can call both sides for a hearing.","If not solved, the matter can go on to the Industrial Court."],who:["District Labour Officer","Labour union, if you belong to one","Legal aid clinic","Industrial Court"],carry:["Contract or letter","Payment proof","Witness names"]},
+{id:"debt",t:"Debt or unpaid money",s:"Owed money, broken deals",urgent:"",steps:["List the amount, date, who owes you and how it was agreed. Gather mobile money statements and messages.","Send a written demand and keep a copy.","Try mediation with the LC1 or a respected elder.","For smaller claims, use the Magistrate’s court small claims procedure. It is faster and you do not need a lawyer.","If you are the one being chased, do not ignore court papers. Go to the court on the date given."],who:["LC1 mediation","Magistrate’s court (small claims)","Legal aid clinic"],carry:["Agreement or messages","Mobile money statements","ID"]},
+{id:"child",t:"Child in danger",s:"Abuse, neglect, child marriage",urgent:"Call the Sauti child helpline on 116 or the police on 999.",steps:["Make sure the child is safe and away from the person causing harm.","Call Sauti 116 or report at the police Child and Family Protection Unit.","Take the child for medical care and ask for the PF3 form.","Inform the district Probation and Social Welfare Officer so the child is protected.","Do not confront the abuser alone. Let the authorities act."],who:["Sauti 116 child helpline","Police Child and Family Protection Unit","Probation and Social Welfare Officer","Health centre"],carry:["Child’s details and school","PF3 form","Names of witnesses"]},
+{id:"abuse",t:"Police or official misconduct",s:"Torture, bribes, abuse of power",urgent:"If someone is hurt, get medical care first and keep the records.",steps:["Write down what happened: date, place, name or badge number, witnesses.","Get medical care and keep the report as proof.","Never pay a bribe. Note who asked and for how much.","Report torture or abuse to the Uganda Human Rights Commission.","Report corruption to the Inspectorate of Government."],who:["Uganda Human Rights Commission","Inspectorate of Government","Professional Standards Unit of the Police","Legal aid clinic"],carry:["Notes and photos","Medical report","Witness names"]},
+{id:"lawyer",t:"I need a lawyer",s:"Cannot pay, do not know where to start",urgent:"",steps:["Write your problem in three lines: what happened, when, who is involved.","Visit a Justice Centre or the legal aid clinic of the Uganda Law Society near you.","Many university law clinics also give free help. Ask at the faculty of law.","Bring every paper you have, even if it looks unimportant.","Ask what the next step is and when you should come back."],who:["Justice Centres Uganda","Uganda Law Society legal aid","University law clinics","Legal Aid Service Providers Network (LASPNET) members"],carry:["All papers about the problem","ID","Your three-line summary"]}
+];
+var R=[
+["If you are arrested","You have the right to know why. You may stay silent, and you may ask for a lawyer. You must be brought to court within 48 hours."],
+["Bail","Police bond is free. Court bail is decided by a magistrate or judge. Never pay a middleman."],
+["Searches","Police should show who they are and say what they are looking for. Ask for a written record of anything taken."],
+["No torture","No one may torture or treat you cruelly while in custody. Report it and get a medical report."],
+["Children","A child must be treated by officers trained to work with children. Call Sauti 116 for help."],
+["Court is free to enter","Anyone may attend an open court. Ask the court clerk for your case number and the next date."]
+];
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function li(a){return a.map(function(x){return "<li>"+esc(x)+"</li>"}).join("")}
+$("tiles").innerHTML=P.map(function(p){return '<button class="tile" data-id="'+p.id+'"><b>'+esc(p.t)+'</b><span>'+esc(p.s)+'</span></button>'}).join("");
+$("rights").innerHTML=R.map(function(r){return '<div class="card"><h3>'+esc(r[0])+'</h3><p style="margin:0">'+esc(r[1])+'</p></div>'}).join("");
+function show(id){
+var p=P.filter(function(x){return x.id===id})[0];
+$("tiles").hidden=true;$("guide").hidden=false;
+$("guide").innerHTML='<button class="back" id="bk">Back to all problems</button><h2>'+esc(p.t)+'</h2>'+
+(p.urgent?'<div class="card urgent"><b>Act now:</b> '+esc(p.urgent)+'</div>':'')+
+'<div class="card"><h3>What to do, in order</h3><ol>'+li(p.steps)+'</ol></div>'+
+'<div class="card"><h3>Who can help</h3><ul>'+li(p.who)+'</ul></div>'+
+'<div class="card"><h3>What to carry</h3><ul>'+li(p.carry)+'</ul></div>'+
+'<button class="btn" id="tc">Track this in my case diary</button>';
+$("bk").onclick=function(){$("guide").hidden=true;$("tiles").hidden=false};
+$("tc").onclick=function(){$("ct").value=p.t;tab("cases");$("cd").focus()};
+window.scrollTo(0,0)}
+$("tiles").onclick=function(e){var b=e.target.closest(".tile");if(b)show(b.dataset.id)};
+function tab(n){
+["help","rights","cases","law"].forEach(function(t){$(t).hidden=t!==n});
+document.querySelectorAll("nav button").forEach(function(b){b.setAttribute("aria-selected",b.dataset.tab===n)});
+if(n==="cases")render()}
+document.querySelector("nav").onclick=function(e){var b=e.target.closest("button");if(b)tab(b.dataset.tab)};
+var cases=[];
+try{cases=JSON.parse(localStorage.getItem("hakipath.cases")||"[]")}catch(e){cases=[]}
+function store(){try{localStorage.setItem("hakipath.cases",JSON.stringify(cases))}catch(e){}}
+function days(d){if(!d)return null;var t=new Date();t.setHours(0,0,0,0);return Math.round((new Date(d+"T00:00:00")-t)/864e5)}
+function render(){
+if(!cases.length){$("caselist").innerHTML='<p class="muted">No cases yet. Add your first court or office date above so you never miss it.</p>';return}
+var s=cases.slice().sort(function(a,b){return (a.d||"9").localeCompare(b.d||"9")});
+$("caselist").innerHTML=s.map(function(c){var n=days(c.d),l="No date set",k="due";
+if(n!==null){l=n<0?"Date passed "+(-n)+" day(s) ago":n===0?"Today":n===1?"Tomorrow":"In "+n+" days";if(n<=2&&n>=0)k+=" soon"}
+return '<div class="card case"><div><h3>'+esc(c.t)+'</h3><div class="'+k+'">'+l+(c.d?" · "+esc(c.d):"")+'</div>'+(c.n?'<p class="muted" style="margin:6px 0 0">'+esc(c.n)+'</p>':'')+'</div><button class="btn ghost" data-del="'+c.id+'">Delete</button></div>'}).join("")}
+$("save").onclick=function(){
+var t=$("ct").value.trim();if(!t){$("ct").focus();return}
+cases.push({id:Date.now(),t:t,d:$("cd").value,n:$("cn").value.trim()});store();
+$("ct").value="";$("cd").value="";$("cn").value="";render()};
+$("caselist").onclick=function(e){var b=e.target.closest("[data-del]");if(!b)return;
+cases=cases.filter(function(c){return String(c.id)!==b.dataset.del});store();render()};
+var L=[
+["Constitution 1995","Art. 23(4)","arrest, detention, court, 48 hours, police","Time limit after arrest","A person arrested must be brought to court as soon as possible and not later than 48 hours."],
+["Constitution 1995","Art. 23(6)","bail, arrest, release, court","Right to apply for bail","A person arrested for an offence may apply to court to be released on bail on reasonable conditions."],
+["Constitution 1995","Art. 24","torture, police, custody, cruelty","No torture","No one may be subjected to torture or cruel, inhuman or degrading treatment or punishment."],
+["Constitution 1995","Art. 28","fair hearing, trial, innocent, court, lawyer","Fair hearing and presumption of innocence","Everyone is entitled to a fair, speedy and public hearing by an independent court. An accused person is presumed innocent until proved guilty or until they plead guilty."],
+["Constitution 1995","Art. 33","women, gender, equality, rights","Rights of women","Women have full and equal dignity with men and equal opportunities in political, economic and social life."],
+["Constitution 1995","Art. 34","children, rights, care, education","Rights of children","A child has the right to be cared for by parents and must not be deprived of medical treatment, education or other social benefits."],
+["Constitution 1995","Art. 40","work, employment, wages, workers, union","Right to work","Workers have the right to just and fair conditions of work and to form or join a trade union."],
+["Constitution 1995","Art. 44","torture, fair hearing, habeas corpus, emergency","Rights that can never be limited","Freedom from torture, the right to a fair hearing and habeas corpus cannot be taken away, even in an emergency."],
+["Constitution 1995","Art. 50","enforce, rights, court, compensation","Enforcing your rights","Anyone whose rights are violated may apply to a competent court for redress, including compensation."],
+["Constitution 1995","Art. 237","land, ownership, customary, mailo, freehold, leasehold","Land belongs to citizens","Land in Uganda belongs to the citizens and is held under customary, freehold, mailo or leasehold tenure."],
+["Penal Code Act","s.123","rape, sexual, consent, offence","Rape","Sexual intercourse without consent, or consent got by force, threats or fear, is rape."],
+["Penal Code Act","s.129","defilement, child, sexual, offence","Defilement","A sexual act with a child below 18 is defilement. A child’s consent is not a defence."],
+["Penal Code Act","s.188","murder, killing, offence","Murder","Killing another person with malice aforethought is murder."],
+["Penal Code Act","s.254","theft, stealing, offence","Theft","Taking something that belongs to another person without right and with intent to keep it permanently is theft."],
+["Penal Code Act","s.285","robbery, theft, violence, offence","Robbery","Stealing with violence, or threats of violence, is robbery."],
+["Domestic Violence Act 2010","Whole Act","domestic violence, protection order, family, GBV, police, court","Protection orders","A court can issue a protection order to keep an abusive person away from you. Report to the police Child and Family Protection Unit or the local council."],
+["Domestic Violence Act 2010","Whole Act","domestic violence, abuse, economic, emotional, GBV, definition","What counts as domestic violence","Includes physical, sexual, emotional, verbal and economic abuse within a domestic relationship."],
+["Employment Act 2006","Termination and discipline","employment, dismissal, notice, hearing, termination, job","Unfair dismissal","An employer needs a valid reason, must give notice and hear the employee before dismissal. Dismissal without these can be challenged."],
+["Employment Act 2006","Wages","wages, unpaid, salary, employer, labour officer, pay","Unpaid wages","Wages are due on the agreed pay day. Complain to the District Labour Officer if you are not paid."],
+["Employment Act 2006","Leave","maternity, leave, pregnant, women, employment, paternity","Maternity and paternity leave","A female employee is entitled to 60 working days of maternity leave. A father is entitled to 4 working days of paternity leave."],
+["Land Act","Occupants","land, tenant, eviction, bibanja, landlord, mailo, occupant","Protection of lawful occupants","Lawful and bona fide occupants on registered land have protected rights. They should not be evicted without lawful process and a court order."],
+["Succession Act","Wills and estates","inheritance, will, death, estate, widow, children, succession","Inheritance and wills","A person can leave a will. Without one, the estate is shared under the Act among the spouse and children. An administrator needs letters of administration from court."],
+["Children Act","Care and protection","children, abuse, neglect, care, probation, child","Protecting a child","A child in need of care can be reported to the police or the Probation and Social Welfare Officer. Child matters go to the Family and Children Court."],
+["Anti-Corruption Act 2009","Whole Act","corruption, bribe, official, report, inspectorate","Bribery","Giving or taking a bribe is an offence. Report corruption to the Inspectorate of Government."],
+["Prevention and Prohibition of Torture Act 2012","Whole Act","torture, police, custody, evidence, confession","Torture is a crime","Torture is a criminal offence. A confession obtained by torture cannot be used as evidence."],
+["Human Rights (Enforcement) Act 2019","Whole Act","rights, enforcement, officers, liability, court, compensation","Officers can be held personally liable","Courts can hold public officers personally liable for violating human rights."],
+["Magistrates Courts Act","Small claims","debt, small claims, money, court, claim","Small claims procedure","Money claims below a set limit can be filed in the Magistrate’s court under the small claims procedure. It is quicker and you do not need a lawyer."],
+["Police practice","Police bond","police, bond, free, arrest, bail, bribe","Police bond is free","Police can release a suspect on bond. No payment is required. Report anyone who asks for money."]
+];
+var STOP={a:1,the:1,of:1,and:1,to:1,in:1,is:1,my:1,i:1,for:1,me:1,on:1};
+function toks(q){return q.toLowerCase().split(/[^a-z0-9]+/).filter(function(w){return w&&!STOP[w]})}
+var acts=[];L.forEach(function(e){if(acts.indexOf(e[0])<0)acts.push(e[0])});
+$("la").innerHTML+=acts.map(function(a){return '<option>'+esc(a)+'</option>'}).join("");
+function runLaw(){
+var t=toks($("lq").value),act=$("la").value;
+var rs=L.map(function(e){var h=e.join(" ").toLowerCase(),tg=(e[2]+" "+e[3]).toLowerCase(),s=0,ok=true;
+t.forEach(function(w){if(h.indexOf(w)<0)ok=false;else s+=1+(tg.indexOf(w)>=0?2:0)});
+return {e:e,s:s,ok:ok}}).filter(function(r){return r.ok&&(!act||r.e[0]===act)}).sort(function(a,b){return b.s-a.s});
+$("lc").textContent=rs.length+" of "+L.length+" provisions match"+(t.length?". Add more detail to narrow it down.":".");
+var f={};rs.forEach(function(r){r.e[2].split(", ").forEach(function(g){if(t.indexOf(g)<0&&g.indexOf(" ")<0)f[g]=(f[g]||0)+1})});
+var top=Object.keys(f).sort(function(a,b){return f[b]-f[a]}).slice(0,8);
+$("lr").innerHTML=rs.length>1?top.map(function(g){return '<button class="chip" data-add="'+esc(g)+'">+ '+esc(g)+'</button>'}).join(""):"";
+$("ll").innerHTML=rs.length?rs.map(function(r,i){return '<details class="law"'+(rs.length<=3?' open':'')+'><summary>'+esc(r.e[3])+' <span class="ref">'+esc(r.e[0])+' · '+esc(r.e[1])+'</span></summary><p>'+esc(r.e[4])+'</p></details>'}).join(""):'<p class="muted">Nothing matches. Try fewer or simpler words, for example “bail” or “land”.</p>'}
+$("lq").oninput=runLaw;$("la").onchange=runLaw;
+$("lr").onclick=function(e){var b=e.target.closest("[data-add]");if(!b)return;var q=$("lq");q.value=(q.value+" "+b.dataset.add).trim();runLaw();q.focus()};
+runLaw();
+</script>
+</body>
+</html>
